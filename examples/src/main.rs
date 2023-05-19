@@ -4,22 +4,22 @@ rouille::rouille! {
     utilisons std::collections::Dictionnaire comme Dico;
 
     convention CléValeur {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine);
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine>;
+        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne);
+        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaine, Chaine>> = Rien;
+    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaîne, Chaîne>> = Rien;
 
     structure Concrète;
 
     réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine) {
+        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne) {
             soit dico = dangereux {
                 DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
             };
             dico.insérer(clé, valeur);
         }
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine> {
+        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne> {
             si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
                 Bien(dico.lire(&clé))
             } sinon {
@@ -28,10 +28,10 @@ rouille::rouille! {
         }
     }
 
-    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaine>> {
+    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaîne>> {
         si i % 2 == 1 {
             si i == 42 {
-                Quelque(Arf(Chaine::depuis("merde")))
+                Quelque(Arf(Chaîne::depuis("merde")))
             } sinon {
                 Quelque(Bien(33))
             }

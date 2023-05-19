@@ -2,12 +2,12 @@ rouille_compilogenese::rouille! {
     utilisons macro_procédurale::{Groupe, Identifiant, FluxDeJetons, ArbreDeJetons};
 
     fonction remplacer_identifiant(identifiant: Identifiant) -> PeutÊtre<ArbreDeJetons> {
-        soit identifiant_chaine = identifiant.vers_chaine();
+        soit identifiant_chaîne = identifiant.vers_chaîne();
 
-        soit nouvelle_chaine = selon identifiant_chaine.en_tant_que_chaine() {
+        soit nouvelle_chaîne = selon identifiant_chaîne.en_tant_que_chaîne() {
             "Arf" => "Err",
             "Bien" => "Ok",
-            "Chaine" => "String",
+            "Chaîne" => "String",
             "Dictionnaire" => "HashMap",
             "Défaut" => "Default",
             "Erreur" => "Error",
@@ -72,8 +72,8 @@ rouille_compilogenese::rouille! {
             "Identifiant" => "Ident",
             "FluxDeJetons" => "TokenStream",
             "ArbreDeJetons" => "TokenTree",
-            "vers_chaine" => "to_string",
-            "en_tant_que_chaine" => "as_str",
+            "vers_chaîne" => "to_string",
+            "en_tant_que_chaîne" => "as_str",
             "portée" => "span",
             "Tableau" => "Vec",
             "flux" => "stream",
@@ -83,10 +83,10 @@ rouille_compilogenese::rouille! {
             "Ponctuation" => "Punct",
             "Litéral" => "Literal",
             "macro_procédurale" => "proc_macro",
-            _ => &identifiant_chaine,
+            _ => &identifiant_chaîne,
         };
 
-        soit nouvel_identifiant = Identifiant::nouveau(nouvelle_chaine, identifiant.portée());
+        soit nouvel_identifiant = Identifiant::nouveau(nouvelle_chaîne, identifiant.portée());
         Quelque(ArbreDeJetons::Identifiant(nouvel_identifiant))
     }
 

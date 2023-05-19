@@ -33,22 +33,22 @@ rouille::rouille! {
     utilisons std::collections::Dictionnaire comme Dico;
 
     convention CléValeur {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine);
-        fonction lire(&soi, clé: Chaine) -> PeutÊtre<&Chaine>;
+        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne);
+        fonction lire(&soi, clé: Chaîne) -> PeutÊtre<&Chaîne>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaine, Chaine>> = Rien;
+    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaîne, Chaîne>> = Rien;
 
     structure Concrète;
 
     réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine) {
+        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne) {
             soit dico = dangereux {
                 DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
             };
             dico.insérer(clé, valeur);
         }
-        fonction lire(&soi, clé: Chaine) -> Résultat<PeutÊtre<&Chaine>, Chaine> {
+        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne> {
             si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
                 Bien(dico.lire(&clé))
             } sinon {
