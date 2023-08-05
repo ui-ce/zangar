@@ -1,7 +1,7 @@
 # Zangar
 
 <div align="center">
-    <img src="https://github.com/ui-ce/zangar/raw/main/zangar-small.png">
+    <img src="https://github.com/ui-ce/zangar/raw/asli/zangar-small.png">
 </div>
 
 **Zangar** (Persian for _Rust_) allows you to write Rust programs in Persian, using Persian keywords and function names.
