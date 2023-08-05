@@ -1,85 +1,112 @@
-rouille::rouille! {
-    externe cagette rouille;
+zangar::zangar! {
+    khareji jabe zangar;
 
-    utilisons std::collections::Dictionnaire comme Dico;
+    est std::collections::Negasht ba Neg;
 
-    convention CléValeur {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne);
-        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne>;
+    rabet KelidMeghdar {
+        tb benevis(&ght khod, kelid: Reshte, meghdar: Reshte);
+        tb bekhan(&khod, kelid: Reshte) -> Natije<Entekhab<&Reshte>, Reshte>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaîne, Chaîne>> = Rien;
 
-    structure Concrète;
+    sakhteman Diksheneri {
+        negasht: Entekhab<Neg<Reshte, Reshte>> ,
+    }
 
-    réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
-            };
-            dico.insérer(clé, valeur);
+    ejra Diksheneri {
+        tb new() -> Self {
+            bashad res = Self { negasht : Hich, };
+            res
         }
-        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne> {
-            si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
-                Bien(dico.lire(&clé))
-            } sinon {
-                Arf("fetchez le dico".vers())
+        tb chap_kon(&khod) {
+            agar bashad Ghadri(ng) = &khod.negasht {
+                baraye (k, m) dar ng {
+                    chap!("{k} : {m}");
+                }
             }
         }
     }
 
-    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaîne>> {
-        si i % 2 == 1 {
-            si i == 42 {
-                Quelque(Arf(Chaîne::depuis("merde")))
-            } sinon {
-                Quelque(Bien(33))
+    ejra KelidMeghdar baraye Diksheneri {
+        tb benevis(&ght khod, kelid: Reshte, meghdar: Reshte) {
+            bashad dik = khod.negasht.begir_ya_darj_kon(Pishfarz::pishfarz);
+            dik.darj(kelid, meghdar);
+        }
+        tb bekhan(&khod, kelid: Reshte) -> Natije<Entekhab<&Reshte>, Reshte> {
+            agar bashad Ghadri(dik) = khod.negasht.ba_marja() {
+                Ok(dik.begir(&kelid))
+            } garna {
+                Kh("khandan diksheneri".be())
             }
-        } sinon {
-            Rien
         }
     }
 
-    asynchrone fonction exemple() {
+    nahamzaman tb mesal() {
     }
 
-    asynchrone fonction exemple2() {
-        exemple().attend;
+    nahamzaman tb mesal2() {
+        mesal().entezar;
     }
 
-    fonction principale() {
-        soit mutable x = 31;
+    aam(jabe) tb shayad(i: u32) -> Entekhab<Natije<u32, Reshte>> {
+        agar i % 2 == 1 {
+            agar i == 42 {
+                Ghadri(Kh(Reshte::az("eshtebah")))
+            } garna {
+                Ghadri(Ok(33))
+            }
+        } garna {
+            Hich
+        }
+    }
 
-        selon x {
+    tb asli () {
+
+        bashad ght dik : Diksheneri = Diksheneri::new();
+        dik.benevis("0".to_string(), "صفر = sefr = zero".to_string());
+        dik.benevis("1".to_string(), "یک = yek = one".to_string());
+        dik.benevis("2".to_string(), "دو = do = two".to_string());
+        dik.benevis("3".to_string(), "سه = se = three".to_string());
+        dik.benevis("4".to_string(), "چهار = chahar = four".to_string());
+        dik.benevis("5".to_string(), "پنج = panj = five".to_string());
+        dik.benevis("6".to_string(), "شش = shesh = six".to_string());
+        dik.benevis("7".to_string(), "هفت = haft = seven".to_string());
+        dik.benevis("8".to_string(), "هشت = hasht = eight".to_string());
+        dik.benevis("9".to_string(), "نه = noh = nine".to_string());
+        dik.benevis("10".to_string(), "ده = dah = ten".to_string());
+       
+        dik.chap_kon();
+
+        bashad ght x = 31 ;
+
+        tatbigh x {
             42 => {
-                affiche!("omelette du fromage")
+                chap!("چهل و دو")
             }
-            _ => affiche!("voila")
+            _ => chap!("راست به زبان فارسی")
         }
 
-        pour i de 0..10 {
-            soit val = boucle {
-                arrête i;
+        baraye i dar 0..10 {
+            bashad val = halghe {
+                tavaghof i;
             };
 
-            tant que x < val {
+            tavaghti x < val {
                 x += 1;
             }
 
-            x = si soit Quelque(resultat) = peut_etre(i) {
-                resultat.déballer()
-            } sinon {
+            x = agar bashad Ghadri(natije) = shayad(i) {
+                natije.vapich()
+            } garna {
                 12
             };
         }
 
-        //secondaire();
+        //dovvom();
     }
 
-    #[légal(code_inaccessible)]
-    fonction secondaire() {
-        merde!("oh non"); // for the true French experience
-        calisse!("tabernacle"); // for friends speaking fr-ca
-        oups!("fetchez la vache"); // in SFW contexts
+    #[ejaze(dastnayaftani)]
+    tb dovvom() {
+        ekhtar!("naa!"); // for the true Persian experience
     }
 }

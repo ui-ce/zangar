@@ -1,10 +1,10 @@
-name: Rouille
+name: Zangar
 
 on:
   push:
-    branches: [ principale ]
+    branches: [ asli ]
   pull_request:
-    branches: [ principale ]
+    branches: [ asli ]
 
 jobs:
   ic:
